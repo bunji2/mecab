@@ -1,5 +1,4 @@
-# mecab
-Mecab Wrapper for GoLang
+# Mecab Wrapper for GoLang
 
 # Reuqurement
 - Mecab Binary package for MS-Windows http://taku910.github.io/mecab/#install
@@ -8,6 +7,8 @@ Mecab Wrapper for GoLang
 # Sample
 
 ```
+	import "github.com/bunji2/mecab"
+
 	conf := mecab.Config{
 		Commands: []string{
 			"C:/Program Files (x86)/MeCab/bin/mecab.exe",
