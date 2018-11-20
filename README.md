@@ -1,9 +1,9 @@
 # mecab
-Mecab Wrapper
+Mecab Wrapper for GoLang
 
 # Reuqurement
 - Mecab Binary package for MS-Windows http://taku910.github.io/mecab/#install
-- Select UTF-8 for the charset of dictionaries
+- The charset of dictionaries must be "UTF-8".
 
 # Sample
 
