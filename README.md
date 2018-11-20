@@ -24,6 +24,8 @@
 		// error handling
 	}
   
+  	text := "Your text"
+  
   	result := mp.Write(text)
 	if mp.Error() != nil {
 		// error handling 2
