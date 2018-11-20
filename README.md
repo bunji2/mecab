@@ -20,7 +20,7 @@ Mecab Wrapper
 	mecab.Init(conf)
 	mp, err := mecab.NewProc()
 	if err != nil {
-    // error handling
+		// error handling
 	}
   
   	result := mp.Write(text)
