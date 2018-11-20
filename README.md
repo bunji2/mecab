@@ -8,7 +8,7 @@ Mecab Wrapper
 # Sample
 
 ```
-  conf := mecab.Config{
+	conf := mecab.Config{
 		Commands: []string{
 			"C:/Program Files (x86)/MeCab/bin/mecab.exe",
 			"-F%f[0]_%m\n",
@@ -23,7 +23,7 @@ Mecab Wrapper
     // error handling
 	}
   
-  result := mp.Write(text)
+  	result := mp.Write(text)
 	if mp.Error() != nil {
 		// error handling 2
 	}
