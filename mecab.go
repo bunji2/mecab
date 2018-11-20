@@ -82,6 +82,7 @@ func (mp *Proc) Close() {
 
 }
 
+// Write : 与えた文字列を品詞に分解する関数
 func (mp *Proc) Write(text string) (ret []string) {
 
 	if mp.cmd == nil {
