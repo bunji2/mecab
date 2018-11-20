@@ -30,3 +30,6 @@ Mecab Wrapper for GoLang
 	fmt.Println(result)
   
 ```
+
+# Document
+- https://godoc.org/github.com/bunji2/mecab
