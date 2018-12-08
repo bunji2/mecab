@@ -10,12 +10,12 @@ import (
 
 // Config :
 type Config struct {
-	Commands        []string
-	TimeOutSec      int
-	UseStopWords    bool
-	StopWords       []string
-	StopWordClasses []string
-	Separator       string
+	Commands        []string // Default: []string{"mecab","-F%f[0]_%m\n","-E "}
+	TimeOutSec      int      // Default: 10
+	UseStopWords    bool     // Default: false
+	StopWords       []string // 
+	StopWordClasses []string // 
+	Separator       string   // Default: "\n"
 }
 
 var defaultCommands = []string{
