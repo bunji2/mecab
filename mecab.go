@@ -12,6 +12,7 @@ import (
 type Config struct {
 	Commands        []string
 	TimeOutSec      int
+	UseStopWords    bool
 	StopWords       []string
 	StopWordClasses []string
 	Separator       string
@@ -38,7 +39,8 @@ func Init(c Config) (err error) {
 	}
 
 	if conf.Separator == "" {
-		conf.Separator = "\r\n"
+		//conf.Separator = string([]byte{os.PathSeparator})
+		conf.Separator = "\n"
 	}
 	return
 }
@@ -157,8 +159,11 @@ func (mp *Proc) Write(text string) (ret []string) {
 	if mp.cmd != nil {
 		mp.cmd = nil
 	}
-
-	ret = strings.Split(r, conf.Separator)
+	words := strings.Split(r, conf.Separator)
+	ret = make([]string, len(words))
+	for i, word := range words {
+		ret[i] = strings.TrimLeft(word, " \t\r\n")
+	}
 	return
 }
 
