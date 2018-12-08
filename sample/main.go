@@ -14,13 +14,9 @@ func main() {
 
 func run() int {
 	conf := mecab.Config{
-		//Separator:       "\n",
 		UseStopWords:    false,
-		StopWords:       []string{"名詞_(", "名詞_)"},
-		StopWordClasses: []string{"助詞", "助動詞", "記号"},
 		Commands: []string{
 			"mecab",
-			//"-F%f[0]_%m\n",
 			"-F%m\n",
 			"-E ",
 		},
@@ -41,47 +37,12 @@ func run() int {
 	}
 	fmt.Println(r)
 
-	r2 := mp.Write(text)
-	if mp.Error() != nil {
-		fmt.Println(mp.Error())
-		return 2
-	}
-
-	fmt.Println(len(r2))
-	doc := mecab.MakeDoc(r2)
-	//fmt.Println(mecab.MakeDoc(r2))
-
-	//for _, wid := range doc.Words {
-	//	fmt.Println(doc.Dic[wid])
-	//}
-
-	/*
-		counts := map[int]int{}
-		numWords := len(doc.Dic)
-		for i := 0; i < len(doc.Words)-2; i++ {
-			//id := doc.Words[i]*numWords + doc.Words[i+1]
-			id := foo(numWords, []int{doc.Words[i+2], doc.Words[i+1], doc.Words[i]})
-			counts[id] = counts[id] + 1
-		}
-
-		for id, count := range counts {
-			fmt.Printf("%d %v %d\n", id, toWords(doc.Dic, bar(numWords, id)), count)
-		}
-	*/
-	//fmt.Println(doc)
+	doc := mecab.MakeDoc(r)
 
 	ng := NewNGram(2, &doc)
 	ng.dump()
 	ng = NewNGram(3, &doc)
 	ng.dump()
-
-	aa := []int{0, 1, 2, 3}
-	id := seqToID(4, aa)
-	fmt.Println(aa, "==>", id, "==>", idToSeq(4, len(aa), id))
-
-	aa = []int{3, 2, 1, 0}
-	id = seqToID(4, aa)
-	fmt.Println(aa, "==>", id, "==>", idToSeq(4, len(aa), id))
 
 	return 0
 }
