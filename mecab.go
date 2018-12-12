@@ -10,12 +10,9 @@ import (
 
 // Config :
 type Config struct {
-	Commands        []string // Default: []string{"mecab","-F%f[0]_%m\n","-E "}
-	TimeOutSec      int      // Default: 10
-	UseStopWords    bool     // Default: false
-	StopWords       []string // 
-	StopWordClasses []string // 
-	Separator       string   // Default: "\n"
+	Commands   []string // Default: []string{"mecab","-F%f[0]_%m\n","-E "}
+	TimeOutSec int      // Default: 10
+	Separator  string   // Default: "\n"
 }
 
 var defaultCommands = []string{
@@ -170,57 +167,5 @@ func (mp *Proc) Write(text string) (ret []string) {
 // Error :
 func (mp *Proc) Error() (err error) {
 	err = mp.err
-	return
-}
-
-// Doc :
-type Doc struct {
-	Dic   []string
-	Words []int
-}
-
-// MakeDoc :
-func MakeDoc(words []string) (r Doc) {
-	bag := map[string]int{}
-	w := []int{}
-	i := 0
-	for _, word := range words {
-		if IsStopWord(word) {
-			continue
-		}
-		_, ok := bag[word]
-		if !ok {
-			bag[word] = i
-			i++
-		}
-		idx := bag[word]
-		w = append(w, idx)
-	}
-
-	dic := make([]string, len(bag))
-	for word, idx := range bag {
-		dic[idx] = word
-	}
-	r = Doc{
-		Dic:   dic,
-		Words: w,
-	}
-	return
-}
-
-// IsStopWord :
-func IsStopWord(x string) (r bool) {
-	for _, word := range conf.StopWords {
-		if x == word {
-			r = true
-			return
-		}
-	}
-	for _, wordClass := range conf.StopWordClasses {
-		if strings.HasPrefix(x, wordClass) {
-			r = true
-			break
-		}
-	}
 	return
 }

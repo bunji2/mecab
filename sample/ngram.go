@@ -4,15 +4,16 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/bunji2/mecab"
+	"github.com/bunji2/doc"
 )
 
 type NGram struct {
 	n        int
 	numWords int
-	doc      *mecab.Doc
-	counts   map[int]int
-	data     []int
+	//doc      *mecab.Doc
+	doc    *doc.Data
+	counts map[int]int
+	data   []int
 }
 
 func (ng *NGram) Len() int {
@@ -38,19 +39,20 @@ func (ng *NGram) sortedList() []int {
 	return ng.data
 }
 
-func NewNGram(n int, doc *mecab.Doc) (r *NGram) {
+// NewGram
+func NewNGram(n int, d *doc.Data) (r *NGram) {
 	counts := map[int]int{}
-	numWords := len(doc.Dic)
+	numWords := len(d.Dic)
 
-	for i := 0; i < len(doc.Words)-n; i++ {
-		id := seqToID(numWords, doc.Words[i:i+n])
+	for i := 0; i < len(d.Seq)-n; i++ {
+		id := seqToID(numWords, d.Seq[i:i+n])
 		counts[id] = counts[id] + 1
 	}
 
 	r = &NGram{
 		n:        n,
 		numWords: numWords,
-		doc:      doc,
+		doc:      d,
 		counts:   counts,
 	}
 	return

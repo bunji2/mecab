@@ -37,12 +37,16 @@ func run() int {
 	}
 	fmt.Println(r)
 
-	doc := mecab.MakeDoc(r)
+	/*
+		//doc := mecab.MakeDoc(r)
+		d := doc.New(r)
 
-	ng := NewNGram(2, &doc)
-	ng.dump()
-	ng = NewNGram(3, &doc)
-	ng.dump()
-
+		//ng := NewNGram(2, &doc)
+		ng := NewNGram(2, d)
+		ng.dump()
+		//ng = NewNGram(3, &doc)
+		ng = NewNGram(3, d)
+		ng.dump()
+	*/
 	return 0
 }
