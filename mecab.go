@@ -159,7 +159,8 @@ func (mp *Proc) Write(text string) (ret []string) {
 	words := strings.Split(r, conf.Separator)
 	ret = make([]string, len(words))
 	for i, word := range words {
-		ret[i] = strings.TrimLeft(word, " \t\r\n")
+		//ret[i] = strings.TrimLeft(word, " \t\r\n")
+		ret[i] = strings.TrimRight(word, " \t\r\n")
 	}
 	return
 }
